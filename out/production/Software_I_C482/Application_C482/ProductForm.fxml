@@ -9,40 +9,40 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="833.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application_C482.ProductFormController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="833.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application_C482.ProductFormController">
    <children>
       <ScrollPane layoutX="404.0" layoutY="53.0" prefHeight="155.0" prefWidth="339.0">
          <content>
-            <TableView prefHeight="160.0" prefWidth="339.0">
+            <TableView fx:id="allPartsTableView" prefHeight="160.0" prefWidth="339.0">
               <columns>
-                <TableColumn prefWidth="45.0" text="Part ID" />
-                <TableColumn prefWidth="67.0" text="Part Name" />
-                  <TableColumn prefWidth="94.0" text="Inventory Level" />
-                  <TableColumn prefWidth="120.0" text="Price/Cost per Unit" />
+                <TableColumn fx:id="allPartsIdColumn" prefWidth="45.0" text="Part ID" />
+                <TableColumn fx:id="allPartsNameColumn" prefWidth="67.0" text="Part Name" />
+                  <TableColumn fx:id="allPartsStockColumn" prefWidth="94.0" text="Inventory Level" />
+                  <TableColumn fx:id="allPartsPriceColumn" prefWidth="120.0" text="Price/Cost per Unit" />
               </columns>
             </TableView>
          </content>
       </ScrollPane>
       <ScrollPane layoutX="404.0" layoutY="253.0" prefHeight="155.0" prefWidth="339.0">
          <content>
-            <TableView prefHeight="160.0" prefWidth="337.0">
+            <TableView fx:id="assocPartsTableView" prefHeight="160.0" prefWidth="337.0">
                <columns>
-                  <TableColumn prefWidth="46.0" text="Part ID" />
-                  <TableColumn prefWidth="73.0" text="Part Name" />
-                  <TableColumn prefWidth="92.0" text="Inventory Level" />
-                  <TableColumn prefWidth="115.0" text="Price/Cost per Unit" />
+                  <TableColumn fx:id="assocPartsIdColumn" prefWidth="46.0" text="Part ID" />
+                  <TableColumn fx:id="assocPartsNameColumn" prefWidth="73.0" text="Part Name" />
+                  <TableColumn fx:id="assocPartsStockColumn" prefWidth="92.0" text="Inventory Level" />
+                  <TableColumn fx:id="assocPartsPriceColumn" prefWidth="115.0" text="Price/Cost per Unit" />
                </columns>
             </TableView>
          </content>
       </ScrollPane>
       <TextField layoutX="574.0" layoutY="21.0" prefHeight="25.0" prefWidth="155.0" promptText="Search by Part ID or Name" />
-      <TextField disable="true" layoutX="111.0" layoutY="106.0" />
-      <TextField layoutX="111.0" layoutY="146.0" />
-      <TextField layoutX="111.0" layoutY="183.0" />
-      <TextField layoutX="111.0" layoutY="218.0" />
-      <TextField layoutX="111.0" layoutY="252.0" prefHeight="25.0" prefWidth="72.0" />
-      <TextField layoutX="229.0" layoutY="252.0" prefHeight="25.0" prefWidth="62.0" />
-      <Text layoutX="61.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Product">
+      <TextField fx:id="productIdTextBox" disable="true" layoutX="111.0" layoutY="106.0" />
+      <TextField fx:id="productNameTextBox" layoutX="111.0" layoutY="146.0" />
+      <TextField fx:id="stockTextBox" layoutX="111.0" layoutY="183.0" />
+      <TextField fx:id="priceTextBox" layoutX="111.0" layoutY="218.0" />
+      <TextField fx:id="maxTextBox" layoutX="111.0" layoutY="252.0" prefHeight="25.0" prefWidth="72.0" />
+      <TextField fx:id="minTextBox" layoutX="229.0" layoutY="252.0" prefHeight="25.0" prefWidth="62.0" />
+      <Text fx:id="addOrModifyText" layoutX="61.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Product">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -53,9 +53,9 @@
       <Text layoutX="50.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" />
       <Text layoutX="50.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max" />
       <Text layoutX="194.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Min" />
-      <Button layoutX="639.0" layoutY="218.0" mnemonicParsing="false" text="Add" />
-      <Button layoutX="567.0" layoutY="419.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Remove Associate Part" />
-      <Button layoutX="665.0" layoutY="454.0" mnemonicParsing="false" text="Cancel" />
-      <Button layoutX="567.0" layoutY="454.0" mnemonicParsing="false" onMouseClicked="#saveProduct" text="Save" />
+      <Button fx:id="addAssocPartButton" layoutX="639.0" layoutY="218.0" mnemonicParsing="false" onMouseClicked="#addAssocPartClick" text="Add" />
+      <Button fx:id="removeAssocPartButton" layoutX="567.0" layoutY="419.0" mnemonicParsing="false" onMouseClicked="#removeAssocClick" prefHeight="25.0" prefWidth="149.0" text="Remove Associate Part" />
+      <Button fx:id="cancelButton" layoutX="665.0" layoutY="454.0" mnemonicParsing="false" onMouseClicked="#cancelClick" text="Cancel" />
+      <Button fx:id="saveProductButton" layoutX="567.0" layoutY="454.0" mnemonicParsing="false" onMouseClicked="#saveProductClick" text="Save" />
    </children>
 </Pane>

@@ -17,7 +17,7 @@ import java.util.Iterator;
 public class PartFormController {
     Inventory inventory;
     Scene mainScene;
-    Part partbeingmodified;
+    Part partbeingmodified = null;
     @FXML TextField idTextBox;
     @FXML TextField nameTextBox;
     @FXML TextField priceTextBox;
@@ -29,25 +29,29 @@ public class PartFormController {
     @FXML Text partOriginTextLabel;
     @FXML RadioButton inHouseRadioButton;
     @FXML RadioButton outsourcedRadioButton;
+    @FXML Text addOrModifyText;
 
 
     public void setInventory(Inventory inventoryparameter){
         this.inventory = inventoryparameter;
     }
-    public void setMainScene (Scene mainScene){
+    public void setMainScene(Scene mainScene){
         this.mainScene = mainScene;
     }
 
-    // This one is for the modiy parts button
+    // This one is for the modify parts button
     public void setupFormElementsForModifyPart(Part part){
+        addOrModifyText.setText("Modify Part");
         partbeingmodified = part;
         if(part.getType().equals("Outsourced")){
             outsourcedRadioButton.setSelected(true);
             partSpecificTextBox.setText(((Outsourced)part).getCompanyName());
+            partOriginTextLabel.setText("Company Name");
         }
         else {
             inHouseRadioButton.setSelected(true);
             partSpecificTextBox.setText(String.valueOf(((InHouse)part).getMachineId()));
+            partOriginTextLabel.setText("Machine ID");
         }
         idTextBox.setText(String.valueOf(part.getId()));
         nameTextBox.setText(String.valueOf(part.getName()));
@@ -59,6 +63,8 @@ public class PartFormController {
     }
     // This one is for the add parts button
     public void setupFormElementsForAddPart(){
+        inHouseRadioButton.setSelected(true);
+        addOrModifyText.setText("Add Part");
         idTextBox.setText("auto-generated");
         nameTextBox.setText("");
         invTextBox.setText("");
@@ -81,7 +87,7 @@ public class PartFormController {
             int stock = Integer.parseInt(invTextBox.getText());
             int min = Integer.parseInt(minTextBox.getText());
             int max = Integer.parseInt(maxTextBox.getText());
-            int id = Integer.parseInt(idTextBox.getText());
+
 
 
             if(partbeingmodified == null)
@@ -95,10 +101,10 @@ public class PartFormController {
                     inventory.addPart(newpart);
                 }
                 partbeingmodified = null;
-                Stage stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
-                stage.setScene(mainScene);
+
             }
             else{
+                int id = Integer.parseInt(idTextBox.getText());
                 //If the type of the part being modified has not changed
                 if(partbeingmodified.getType().equals(selectedRadioButton.getText())){
                     partbeingmodified.setMax(Integer.parseInt(maxTextBox.getText()));
@@ -125,12 +131,14 @@ public class PartFormController {
                     //Changed from In-house to Outsourced
                     else{
                         String companyName = partSpecificTextBox.getText();
-                        inventory.addPart(new Outsourced(id, name, price, min, max, companyName));
+                        inventory.addPart(new Outsourced(id, name, price, stock, min, max, companyName));
                     }
 
                 }
 
             }
+            Stage stage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+            stage.setScene(mainScene);
         }
         catch (Exception e){
 

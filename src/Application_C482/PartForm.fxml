@@ -17,7 +17,7 @@
       <TextField fx:id="minTextBox" layoutX="379.0" layoutY="221.0" />
       <TextField fx:id="maxTextBox" layoutX="172.0" layoutY="221.0" />
       <TextField fx:id="partSpecificTextBox" layoutX="172.0" layoutY="256.0" />
-      <Text layoutX="56.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Part">
+      <Text fx:id="addOrModifyText" layoutX="56.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Part">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

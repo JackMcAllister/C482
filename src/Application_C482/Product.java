@@ -4,7 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Product {
-    private static int nextIDavailable = 1;
+    private static int nextIDavailable = 1000;
     private ObservableList<Part> associatedParts;
     private int id;
     private String name;
@@ -14,6 +14,25 @@ public class Product {
     private int max;
 
 
+    public Product(String name, double price, int stock, int min, int max) {
+        this.id = nextIDavailable;
+        this.name = name;
+        this.price = price;
+        this.min = min;
+        this.max = max;
+        if(stock>max){
+            this.stock = max;
+        }
+        else if (stock< min){
+            stock = min;
+        }
+        else{
+            this.stock = stock;
+
+        }
+        associatedParts = FXCollections.observableArrayList();
+        nextIDavailable++;
+    }
     public Product(int id,String name, double price, int stock, int min, int max) {
         this.id = id;
         this.name = name;
@@ -22,7 +41,7 @@ public class Product {
         this.min = min;
         this.max = max;
         associatedParts = FXCollections.observableArrayList();
-        nextIDavailable++;
+
     }
 
     public static int getNextIDavailable() {
@@ -126,5 +145,9 @@ public class Product {
 
     public ObservableList<Part> getAllAssociatedParts() {
         return associatedParts;
+    }
+
+    public void setAssociatedParts (ObservableList<Part> assocParts){
+        this.associatedParts = assocParts;
     }
 }

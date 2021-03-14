@@ -43,17 +43,24 @@ public class Main extends Application {
 
             //set references between controllers for navigation
             mainFormController.setPartScene(partForm, partFormController);
-            mainFormController.setProductScene(productForm);
+            mainFormController.setProductScene(productForm,productFormController);
             productFormController.setMainScene(mainForm);
             partFormController.setMainScene(mainForm);
 
+            //Prepoulate form
+            this.setupTest();
 
 
         }
         catch (Exception e){
-            System.out.println(e.getStackTrace());
+            System.out.println(e.getStackTrace().toString());
             ;
         }
+
+    }
+    public void setupTest(){
+        inventory.addPart(new InHouse("test IH", 2.0, 2, 2, 2, 2));
+        inventory.addPart(new Outsourced("test OS", 2.0, 2, 2, 2, "2"));
 
     }
 
