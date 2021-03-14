@@ -59,8 +59,17 @@ public class Main extends Application {
 
     }
     public void setupTest(){
-        inventory.addPart(new InHouse("test IH", 2.0, 2, 2, 2, 2));
-        inventory.addPart(new Outsourced("test OS", 2.0, 2, 2, 2, "2"));
+        Part p1 = new InHouse("Spacely Sprockets", 2.0, 2, 2, 2, 2);
+        inventory.addPart(p1);
+        Part p2 = new Outsourced("Cogswell cog", 2.0, 2, 2, 2, "2");
+        inventory.addPart(p2);
+        Product pr1 = new Product("Tricycle", 2.0, 5, 5, 5);
+        pr1.addAssociatedPart(p1);
+        Product pr2 = new Product("Bicycle", 2.0, 5, 5, 5);
+        pr2.addAssociatedPart(p2);
+        inventory.addProduct(pr1);
+        inventory.addProduct(pr2);
+
 
     }
 

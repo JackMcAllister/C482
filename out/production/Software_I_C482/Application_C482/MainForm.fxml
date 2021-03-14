@@ -58,7 +58,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Text>
-            <TextField layoutX="194.0" layoutY="63.0" prefHeight="25.0" prefWidth="155.0" promptText="Search by Part ID or Name" />
+            <TextField fx:id="partsSearch" layoutX="194.0" layoutY="63.0" onKeyTyped="#filterParts" prefHeight="25.0" prefWidth="155.0" promptText="Search by Part ID or Name" />
             <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="89.0">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="350.0">
@@ -91,7 +91,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Text>
-            <TextField layoutX="230.0" layoutY="63.0" prefHeight="25.0" prefWidth="155.0" promptText="Search by Part ID or Name" />
+            <TextField fx:id="productSearch" layoutX="230.0" layoutY="63.0" onKeyTyped="#filterProducts" prefHeight="25.0" prefWidth="155.0" promptText="Search by Part ID or Name" />
             <ScrollPane layoutY="89.0" prefHeight="211.0" prefWidth="385.0">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="350.0">
@@ -118,7 +118,7 @@
          </children>
       </Pane>
       
-      <Button layoutX="728.0" layoutY="434.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="45.0" text="Exit" />
+      <Button fx:id="exitButton" layoutX="728.0" layoutY="434.0" mnemonicParsing="false" onMouseClicked="#exitClick" prefHeight="28.0" prefWidth="45.0" text="Exit" />
    </children>
    <opaqueInsets>
       <Insets />

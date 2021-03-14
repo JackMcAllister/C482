@@ -30,13 +30,16 @@ public class Inventory {
         return null;
     }
     //+ lookupPart(partName:String):ObservableList<Part>
-    public Part lookupPart(String partName){
+    public ObservableList<Part> lookupPart(String searchString){
+        ObservableList<Part> filteredParts = FXCollections.observableArrayList();
         for(Part temp1:allParts){
-            if (temp1.getName().toLowerCase().contains(partName.toLowerCase())) {
-                return temp1;
+            if (temp1.getName().toLowerCase().contains(searchString.toLowerCase())
+                    || String.valueOf(temp1.getId()).contains(searchString))
+            {
+                filteredParts.add(temp1);
             }
         }
-        return null;
+        return filteredParts;
     }
 //+ lookupProduct(productId:int):Product
     public Product lookupProduct(int productID){
@@ -49,13 +52,16 @@ public class Inventory {
     }
 
 //+ lookupProduct(productName:String):ObservableList<Product>
-    public Product lookupProduct(String productName){
+    public ObservableList<Product> lookupProduct(String searchString){
+        ObservableList<Product> filteredProduct = FXCollections.observableArrayList();
         for(Product temp1:allProducts){
-            if (temp1.getName().toLowerCase().contains(productName.toLowerCase())) {
-                return temp1;
+            if (temp1.getName().toLowerCase().contains(searchString.toLowerCase())
+                || String.valueOf(temp1.getId()).contains(searchString))
+            {
+                filteredProduct.add(temp1);
             }
         }
-        return null;
+        return filteredProduct;
     }
 
 //+ updatePart(index:int, selectedPart:Part):void

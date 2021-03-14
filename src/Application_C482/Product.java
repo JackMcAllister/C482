@@ -24,11 +24,10 @@ public class Product {
             this.stock = max;
         }
         else if (stock< min){
-            stock = min;
+            this.stock = min;
         }
         else{
             this.stock = stock;
-
         }
         associatedParts = FXCollections.observableArrayList();
         nextIDavailable++;
@@ -37,9 +36,17 @@ public class Product {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.stock = stock;
         this.min = min;
         this.max = max;
+        if(stock>max){
+            this.stock = max;
+        }
+        else if (stock< min){
+            this.stock = min;
+        }
+        else{
+            this.stock = stock;
+        }
         associatedParts = FXCollections.observableArrayList();
 
     }

@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -44,6 +45,7 @@ public class ProductFormController {
     @FXML Button saveProductButton;
     @FXML Text addOrModifyText;
     @FXML TextField productIdTextBox;
+    @FXML TextField partSearchProductForm;
 
 
 
@@ -93,6 +95,7 @@ public class ProductFormController {
         this.setupAssociatePatsTable();
         addOrModifyText.setText("Modify Product");
         productIdTextBox.setText(String.valueOf(product.getId()));
+        priceTextBox.setText(String.valueOf(product.getPrice()));
         productNameTextBox.setText(product.getName());
         stockTextBox.setText(String.valueOf(product.getStock()));
         maxTextBox.setText(String.valueOf(product.getMax()));
@@ -154,6 +157,15 @@ public class ProductFormController {
         } else {
             addedAssocParts.remove(allPartsTableView.getSelectionModel().getSelectedItem());
 
+        }
+    }
+
+    public void filterPart(KeyEvent keyEvent) {
+        if(partSearchProductForm.getText().isEmpty()){
+            allPartsTableView.setItems(inventory.getAllParts());
+        }
+        else{
+            allPartsTableView.setItems(inventory.lookupPart(partSearchProductForm.getText()));
         }
     }
 }

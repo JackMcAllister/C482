@@ -7,6 +7,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -31,6 +34,9 @@ public class MainFormController
     @FXML TableColumn<Product, String> productNameColumn;
     @FXML TableColumn<Product, String> productStockColumn;
     @FXML TableColumn<Product, String> productPriceColumn;
+    @FXML Button exitButton;
+    @FXML TextField partsSearch;
+    @FXML TextField productSearch;
 
 
 
@@ -98,6 +104,29 @@ public class MainFormController
     public void deleteProductClick(MouseEvent mouseEvent) {
         if(productsTableView.getSelectionModel().getSelectedItem() != null){
             inventory.deleteProduct(productsTableView.getSelectionModel().getSelectedItem());
+        }
+    }
+
+    public void exitClick(MouseEvent mouseEvent) {
+        System.exit(0);
+    }
+
+
+    public void filterParts(KeyEvent keyEvent) {
+        if(partsSearch.getText().isEmpty()){
+            partsTable.setItems(inventory.getAllParts());
+        }
+        else{
+            partsTable.setItems(inventory.lookupPart(partsSearch.getText()));
+        }
+    }
+
+    public void filterProducts(KeyEvent keyEvent) {
+        if(productSearch.getText().isEmpty()){
+            productsTableView.setItems(inventory.getAllProducts());
+        }
+        else{
+            productsTableView.setItems(inventory.lookupProduct(productSearch.getText()));
         }
     }
 }
